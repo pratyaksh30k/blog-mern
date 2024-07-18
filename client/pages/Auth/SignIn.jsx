@@ -48,7 +48,7 @@ export default function SignIn() {
           marginTop: "180px",
           marginBottom: "235px",
           width: "786px",
-          "@media (max-width: 768px)": {
+          "@media (maxWidth: 768px)": {
             padding: "20px",
             gap: "20px",
             marginTop: "90px",
@@ -72,7 +72,7 @@ export default function SignIn() {
             style={{
               fontSize: "36px",
               lineHeight: "40px",
-              "@media (max-width: 768px)": {
+              "@media (maxWidth: 768px)": {
                 fontSize: "24px",
                 lineHeight: "32px",
               },
