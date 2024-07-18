@@ -40,79 +40,98 @@ export default function SignUp() {
     }
   };
   return (
-    <div style={{ marginTop: "40px" }} className="min-h-screen">
+    <div style={{ marginTop: "40px", minHeight: "100vh" }}>
       <div
         style={{
           padding: "40px",
           gap: "40px",
           marginTop: "180px",
-          marginBottom: "180px",
+          marginBottom: "235px",
+          width: "786px",
+          "@media (max-width: 768px)": {
+            padding: "20px",
+            gap: "20px",
+            marginTop: "90px",
+            marginBottom: "117.5px",
+            width: "100",
+            height: "100%",
+          },
+          // "@media (max-width: 480px)": {
+          //   padding: "10px",
+          //   gap: "10px",
+          //   marginTop: "45px",
+          //   marginBottom: "58.75px",
+          //   width: "100%",
+          // },
         }}
-        className="flex max-w-3xl mx-auto flex-col md:flex-row md:items-center gap border-gray-300 border border-solid rounded-lg shadow-lg"
+        className="flex w-full md:max-w-3xl mx-auto flex-col md:flex-row md:items-center border-gray-300 border border-solid rounded-lg shadow-lg"
       >
         <div className="flex-1">
           <Link
             to="/"
-            style={{ fontSize: "36px", lineHeight: "40px" }}
-            className="items-center whitespace-nowrap text-4x font-semibold text-gray-700 hover:text-black dark:text-white flex gap-1 "
+            style={{
+              fontSize: "36px",
+              lineHeight: "40px",
+              "@media (max-width: 768px)": {
+                fontSize: "24px",
+                lineHeight: "32px",
+              },
+            }}
+            className="items-center whitespace-nowrap font-semibold text-gray-700 hover:text-black dark:text-white flex gap-1 "
           >
             <span className="px-3 py-1 rounded-lg bg-gradient-to-r from-[#EF233D] to-[#F48F2A] text-white transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:bg-gradient-to-l">
               Pratyaksh's
             </span>
             Blog
           </Link>
-          <p style={{ marginTop: "20px" }} className="text-base">
+          <p style={{ marginTop: "20px" }} className="text-lg md:text-sm">
             This is a demo project. You can sign up with your email and password
             or with Google.
           </p>
         </div>
         <div className="flex-1">
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-            <div>
-              <Label
-                value="Your username"
-                className="text-base font-semibold"
-              />
-              <TextInput
+            <div className="flex flex-col">
+              <label className="mb-1 text-lg md:text-base font-semibold" htmlFor="username">
+                Your username
+              </label>
+              <input
                 type="text"
                 placeholder="Username"
                 id="username"
-                className="font-semibold placeholder:font-semibold"
                 onChange={onChange}
+                className="text-lg font-semibold placeholder:font-semibold bg-gray-100 border border-solid border-gray-300 rounded-lg"
               />
             </div>
-            <div>
-              <Label value="Your email" className="text-base font-semibold" />
-              <TextInput
+            <div className="flex flex-col">
+              <label htmlFor="email" className="mb-1 text-lg md:text-base font-semibold">Your email</label>
+              <input
                 type="email"
                 placeholder="name@company.com"
                 id="email"
-                className="font-semibold placeholder:font-semibold"
                 onChange={onChange}
+                className="text-lg font-semibold placeholder:font-semibold bg-gray-100 border border-solid border-gray-300 rounded-lg"
               />
             </div>
-            <div>
-              <Label
-                value="Your password"
-                className="text-base font-semibold"
-              />
-              <TextInput
+            <div className="flex flex-col">
+              <label htmlFor="password" className="mb-1 text-lg md:text-base font-semibold">Your password</label>
+              <input
                 type="password"
                 placeholder="Password"
                 id="password"
-                className="font-semibold placeholder:font-semibold"
                 onChange={onChange}
+                className="text-lg font-semibold placeholder:font-semibold bg-gray-100 border border-solid border-gray-300 rounded-lg"
               />
             </div>
             <button
               type="submit"
-              className="text-center font-semibold cursor-pointer px-4 py-2 bg-gradient-to-r from-[#EF233D] to-[#F48F2A] text-white rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:bg-gradient-to-l"
+              className="text-center text-xl md:text-base font-semibold cursor-pointer px-4 py-2 bg-gradient-to-r from-[#EF233D] to-[#F48F2A] text-white rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:bg-gradient-to-l"
               disabled={loading}
             >
               {loading ? (
                 <>
                   <Spinner size="sm" />
-                  <span style={{paddingLeft: "10px"}}>Loading...</span>
+                  <span style={{ paddingLeft: "10px" }}>Loading...</span>
                 </>
               ) : (
                 "Sign Up"
@@ -134,7 +153,7 @@ export default function SignUp() {
             </Button> */}
             {/* <OAuth /> */}
           </form>
-          <div style={{ marginTop: "12px" }} className="flex gap-2 text-sm">
+          <div style={{ marginTop: "12px" }} className="flex gap-2 md:text-sm">
             <span>Already have an account?</span>
             <Link
               to="/signin"

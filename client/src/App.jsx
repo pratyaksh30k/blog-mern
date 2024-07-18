@@ -6,10 +6,11 @@ import SignUp from "../pages/Auth/SignUp.jsx";
 import SignIn from "../pages/Auth/SignIn.jsx";
 import Dashboard from "../pages/Dashboard/Dashboard.jsx";
 import Header from "./components/Header.jsx";
+import Footer from "./components/Footer.jsx";
 function App() {
   return (
     <BrowserRouter>
-    <Header/>
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -18,6 +19,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/projects" element={<Projects />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
