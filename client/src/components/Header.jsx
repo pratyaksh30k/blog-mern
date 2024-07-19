@@ -1,11 +1,13 @@
 import React from "react";
-import { Button, Navbar, TextInput } from "flowbite-react";
+import { Avatar, Button, Dropdown, DropdownDivider, Navbar, TextInput } from "flowbite-react";
 import { Link, useLocation } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
 import { IoMoon } from "react-icons/io5";
+import {useSelector} from "react-redux"
 
 export default function Header() {
   const path = useLocation().pathname;
+  const {currentUser} = useSelector((state) => state.user);
   return (
     // <Navbar className="border-b-2">
     //   <Link
@@ -101,12 +103,27 @@ export default function Header() {
           <IoMoon />
         </div>
         <div className="flex justify-center items-center">
-          <Link
+          {currentUser ? (
+            <Dropdown arrowIcon={false} inline label={<Avatar alt="user" img={currentUser?.profilePicture} rounded/>}>
+              <Dropdown.Header>
+                <span className="block text-sm font-bold mb-1">Username: <span className="font-medium">@{currentUser?.username}</span></span>
+                <span className="block text-sm font-bold truncate">Email: <span className="font-medium">{currentUser?.email}</span></span>
+              </Dropdown.Header>
+              <Link to={'/dashboard?tab=profile'}>
+                <Dropdown.Item className="font-semibold">Profile</Dropdown.Item>
+              </Link>
+              <Dropdown.Divider/>
+              <Dropdown.Item className="font-semibold">Sign Out</Dropdown.Item>
+            </Dropdown>
+          ):(
+            <Link
             to="/signin"
             className="font-semibold cursor-pointer px-4 py-2 bg-gradient-to-r from-[#EF233D] to-[#F48F2A] text-white rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:bg-gradient-to-l"
           >
             Sign In
           </Link>
+          )}
+          
         </div>
       </div>
     </div>
