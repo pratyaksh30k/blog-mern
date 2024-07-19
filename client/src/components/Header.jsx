@@ -2,12 +2,15 @@ import React from "react";
 import { Avatar, Button, Dropdown, DropdownDivider, Navbar, TextInput } from "flowbite-react";
 import { Link, useLocation } from "react-router-dom";
 import { IoIosSearch } from "react-icons/io";
-import { IoMoon } from "react-icons/io5";
-import {useSelector} from "react-redux"
+import { IoMoon,IoSunny } from "react-icons/io5";
+import {useSelector,useDispatch} from "react-redux"
+import { toggleTheme } from "../redux/theme/themeSlice";
 
 export default function Header() {
   const path = useLocation().pathname;
   const {currentUser} = useSelector((state) => state.user);
+  const {theme} = useSelector((state) => state.theme);
+  const dispatch = useDispatch();
   return (
     // <Navbar className="border-b-2">
     //   <Link
@@ -68,39 +71,39 @@ export default function Header() {
         </span>
         Blog
       </Link>
-      <div className="flex justify-center items-center w-[20%] h-10 border border-solid border-gray-300 rounded-full px-2 bg-gray-100">
+      <div className="flex justify-center items-center w-[20%] h-10 border border-solid border-gray-300 rounded-full px-2 bg-gray-100 dark:bg-inherit">
         <input
           type="text"
           placeholder="Search..."
-          className="w-[90%] h-full outline-none rounded-l-full px-4 border-none bg-gray-100 focus:outline-none"
+          className="w-[90%] h-full outline-none rounded-l-full px-4 border-none bg-gray-100 focus:outline-none dark:bg-inherit"
         />
-        <div className="text-gray-700 bg-gray-100 outline-none rounded-r-full w-[10%] h-full flex justify-center cursor-pointer ">
-          <IoIosSearch size={20} className="self-center" />
+        <div className="text-gray-700 bg-gray-100 outline-none rounded-r-full w-[10%] h-full flex justify-center cursor-pointer dark:bg-inherit">
+          <IoIosSearch size={20} className="self-center dark:text-white" />
         </div>
       </div>
       <div className="flex gap-10">
         <Link
           to="/"
-          className="text-sm font-semibold cursor-pointer text-gray-700 hover:text-black"
+          className="text-sm font-semibold cursor-pointer text-gray-700 hover:text-black dark:text-white"
         >
           Home
         </Link>
         <Link
           to="/about"
-          className="text-sm font-semibold cursor-pointer text-gray-700 hover:text-black"
+          className="text-sm font-semibold cursor-pointer text-gray-700 hover:text-black dark:text-white"
         >
           About
         </Link>
         <Link
           to="/projects"
-          className="text-sm font-semibold cursor-pointer text-gray-700 hover:text-black"
+          className="text-sm font-semibold cursor-pointer text-gray-700 hover:text-black dark:text-white"
         >
           Projects
         </Link>
       </div>
       <div className="flex gap-4 items-center">
-        <div className="rounded-full border border-solid border-gray-300 px-4 py-3 cursor-pointer text-gray-700 hover:text-black">
-          <IoMoon />
+        <div onClick={()=>dispatch(toggleTheme())} className="rounded-full border border-solid border-gray-300 px-4 py-3 cursor-pointer text-gray-700 hover:text-black dark:text-white">
+          {theme === "dark" ? <IoSunny /> : <IoMoon />}
         </div>
         <div className="flex justify-center items-center">
           {currentUser ? (
