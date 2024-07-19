@@ -14,6 +14,10 @@ const userSchema = new mongoose.Schema({
   password:{
     type: String,
     required: true,
+  },
+  profilePicture:{
+    type: String,
+    default: "https://th.bing.com/th/id/OIP.FtRH1BiHAgErda4nzZOTYwHaHa?rs=1&pid=ImgDetMain",
   }
 },{
   timestamps: true   //done to keep track of time of creation and time of updation of the user account.
